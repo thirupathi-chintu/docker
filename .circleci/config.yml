@@ -10,7 +10,8 @@ jobs:
           shell: /bin/sh
           command: |
                  mkdir ~/testing
-                 echo pwd
+                 cd ~/testing
+                 
           
       
           
