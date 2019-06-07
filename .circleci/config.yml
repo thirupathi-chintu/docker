@@ -8,8 +8,7 @@ jobs:
       - run:
           name: "Testing"
           shell: /bin/sh
-          command: |
-          mkdir ~/testing
+          command: mkdir ~/testing
           
       
           
