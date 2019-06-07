@@ -1,10 +1,8 @@
-version: 2.1
-commands:
-  sayhello:
-    description: "A very simple command for demonstration purposes"
-    parameters:
-      to:
-        type: string
-        default: "Hello World"
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ruby:2.5
     steps:
-      - run: echo << parameters.to >>
+      - checkout
+- run: ./circleci-diag.sh
