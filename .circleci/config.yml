@@ -7,11 +7,7 @@ jobs:
       - checkout
       - run:
           name: "Testing"
-          command: |
-              echo Running test
-              mkdir -p /tmp/test-results
-              make test
-      - run:
           shell: /bin/sh
-          command: |
-              bash ~/wel.sh
+          command: bash ~/wel.sh
+      
+          
