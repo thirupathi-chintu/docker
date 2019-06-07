@@ -2,19 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ubuntu:14.04
-
-      - image: mongo:2.6.8
-        command: [mongod, --smallfiles]
-
-      - image: postgres:9.4.1
-        # some containers require setting environment variables
-        environment:
-          POSTGRES_USER: root
-
-      - image: redis@sha256:54057dd7e125ca41afe526a877e8bd35ec2cdd33b9217e022ed37bdcf7d09673
-
-      - image: rabbitmq:3.5.4
+      - image: ubuntu
 
     environment:
       TEST_REPORTS: /tmp/test-reports
@@ -25,45 +13,12 @@ jobs:
       - checkout
 
       - run:
-          command: echo 127.0.0.1 devhost | sudo tee -a /etc/hosts
+          command: echo "Hello World" | docker run ubuntu
 
   deploy-stage:
     docker:
-      - image: ubuntu:14.04
+      - image: ubuntu
     working_directory: /tmp/my-project
     steps:
       - run:
-          name: Deploy if tests pass and branch is Staging
-          command: ansible-playbook site.yml -i staging
 
-  deploy-prod:
-    docker:
-      - image: ubuntu:14.04
-    working_directory: /tmp/my-project
-    steps:
-      - run:
-         # name: Deploy if tests pass and branch is Master
-          #command: ansible-playbook site.yml -i production
-
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build:
-          filters:
-            branches:
-              ignore:
-                - develop
-                - /feature-.*/
-      - deploy-stage:
-          requires:
-            - build
-          filters:
-            branches:
-              only: staging
-      - deploy-prod:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
