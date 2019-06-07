@@ -10,9 +10,6 @@ jobs:
           shell: /bin/sh
           command: |
             cd /tmp
-            apt install git
-            git clone https://github.com/thirupathi-p/terra.git
-            cd terra
-            bash wel.sh
+            
       
           
