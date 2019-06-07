@@ -8,6 +8,6 @@ jobs:
       - run:
           name: "Testing"
           shell: /bin/sh
-          command: bash ~/wel.sh
+          command: bash ~/first.sh
       
           
