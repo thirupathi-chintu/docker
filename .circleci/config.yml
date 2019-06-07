@@ -13,7 +13,7 @@ jobs:
       - checkout
 
       - run:
-          command: echo "Hello World" | docker run ubuntu
+         # command: echo "Hello World" | docker run ubuntu
 
   deploy-stage:
     docker:
