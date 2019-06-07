@@ -1,12 +1,15 @@
 version: 2
 jobs:
-  shellcheck:
-    docker:
-      - image: nlknguyen/alpine-shellcheck:v0.4.6
+  build:
     steps:
-      - checkout
+      # ... steps for building/testing app ...
+
+      - setup_remote_docker
+      
       - run:
-          name: Check Scripts
+          name: Start container and verify it's working
           command: |
-            find . -type f -name '*.sh' | wc -l
-            find . -type f -name '*.sh' | xargs shellcheck --external-sources
+            set -x
+            docker-compose up -d
+            docker run --network container:contacts \
+              appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:8080/contacts/test
