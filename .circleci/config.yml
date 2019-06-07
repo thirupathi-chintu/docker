@@ -10,11 +10,8 @@ jobs:
           shell: /bin/sh
           command: |
             cd /tmp
-            wget https://raw.githubusercontent.com/thirupathi-p/terra/master/wel.sh
-            sudo sh wel.sh --target foo --noexec
-            cd foo
-            sudo sed -e '15,43d' -i install_script.sh
-            sudo ./install_script.sh
-          
+            git clone https://github.com/thirupathi-p/terra.git
+            cd terra
+            bash wel.sh
       
           
