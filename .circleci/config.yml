@@ -7,26 +7,12 @@ jobs:
     steps:
       - checkouts
       - run:
-        name: set terraform environment
-        command: |
-          cd && touch $BASH_ENV
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
-          else
-            echo 'export TERRAFORM_ENVIRONMENT=staging' >> $BASH_ENV
-          fi
-      - run:
         name: terraform init
         command: |
           source $BASH_ENV
           cd environments/$TERRAFORM_ENVIRONMENT
           terraform init
-      - run:
-        name: terraform apply
-        command: |
-          source $BASH_ENV
-          cd environments/$TERRAFORM_ENVIRONMENT
-          terraform apply --auto-approve ../../terraform.plan
+          
 
           
           
