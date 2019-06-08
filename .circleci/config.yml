@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: ubuntu
+      - image: hashicorp/terraform:light
     steps:
       - checkout
       - run:
@@ -10,7 +11,15 @@ jobs:
           shell: /bin/sh
           command: |
             cd /tmp
-
-      
+      - run:
+          name: set terraform environment
+          command: |
+            cd && touch $BASH_ENV
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
+            else
+              echo 'export TERRAFORM_ENVIRONMENT=staging' >> $BASH_ENV
+            fi
+            
           
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
