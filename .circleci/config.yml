@@ -9,8 +9,7 @@ jobs:
       - run:
         name: terraform init
         command: |
-          source $BASH_ENV
-          cd environments/$TERRAFORM_ENVIRONMENT
+          cd data/$TERRAFORM_ENVIRONMENT
           terraform init
           
 
