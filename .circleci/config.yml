@@ -9,7 +9,7 @@ jobs:
       - run:
         name: terraform init
         command: |
-          cd data/$TERRAFORM_ENVIRONMENT
+          cd data/
           terraform init
           
 
