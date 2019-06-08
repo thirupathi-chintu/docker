@@ -3,16 +3,14 @@ jobs:
   build:
     docker:
       - image: ubuntu
-      - image: hashicorp/terraform:light
     steps:
-      - checkouts
+      - checkout
       - run:
-        name: terraform init
-        command: |
-          cd data/
-          terraform init
-          
+          name: "Testing"
+          shell: /bin/sh
+          command: |
+            cd /tmp
 
-          
+      
           
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
