@@ -21,5 +21,8 @@ jobs: # basic units of work in a run
           name: "What branch am I on now?"
           command: echo $CIRCLE_BRANCH
       - run:
+          name: "testing"
+          command: echo $name
+      - run:
           name: "What was my custom environment variable?"
           command: echo ${MY_ENV_VAR}
