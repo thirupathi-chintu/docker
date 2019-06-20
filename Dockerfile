@@ -1,9 +1,8 @@
-FROM ubuntu
+FROM ubuntu:14.04
 
-RUN apt-get update
-RUN apt-get install -y python python-pip
-RUN pip install flask
+ENV DEBIAN_FRONTEND noninteractive
 
-COPY index.py /opt/index.py
-
-ENTRYPOINT FLASK_APP=/opt/index.py flask run --host=0.0.0.0
+RUN apt-get update && apt-get install -y \
+    python \
+    python-setuptools \
+    python-pip
